@@ -1,0 +1,135 @@
+@charset 'UTF-8';
+
+.modal-open {
+  overflow: hidden;
+  position: relative;
+}
+
+body {
+  height: 2000px;
+
+  &.is-fixed {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+  }
+}
+
+.header {
+  margin: 0 0 20px;
+  background: rgb(189, 79, 79);
+
+  &__inner {
+    max-width: 1000px;
+    margin: auto;
+    padding: 30px 15px;
+
+    h1 > a {
+      font-weight: normal;
+      color: #fff;
+      text-decoration: none;
+    }
+  }
+}
+
+.section__inner {
+  max-width: 1000px;
+  margin: auto;
+  padding: 0 15px;
+}
+
+.dialog {
+  max-width: 1000px;
+  margin-bottom: 30px;
+  &__lead {
+    margin-bottom: 10px;
+    > b {
+      font-weight: normal;
+      font-size: 24px;
+    }
+  }
+  &__hook {
+    display: none;
+  }
+  &-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background: rgba(0, 0, 0, .7);
+    opacity: 0;
+    transition: .7s;
+  }
+}
+
+li {
+  list-style-type: armenian;
+  margin-bottom: 10px;
+}
+
+[data-script-enabled="true"] {
+  .dialog {
+    &__content {
+      position: fixed;
+      top: 0;
+      right: 20px;
+      left: 20px;
+      bottom: 0;
+      height: auto;
+      display: none;
+      margin: 20px auto;
+      opacity: 0;
+      z-index: 1;
+      transition: 1s;
+      overflow-y: scroll;
+
+      &.is-block {
+        display: block;
+      }
+
+      &.is-visible {
+        opacity: 1;
+      }
+    }
+
+    &__inner {
+      position: relative;
+      background: #fff;
+      padding: 20px;
+    }
+
+    &__close-btn {
+      position: absolute;
+      top: 0;
+      right: 0;
+      > span {
+        position: absolte;
+        width: 100px;
+        height: 100px;
+        background: #000;
+        border-radius: 50%;
+      }
+    }
+
+    &__hook {
+      display: inline-block;
+      padding: 5px 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+  }
+
+  .dialog-overlay {
+    &.is-block {
+      display: block;
+    }
+
+    &.is-visible {
+      opacity: 1;
+    }
+  }
+}
