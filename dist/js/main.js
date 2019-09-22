@@ -729,6 +729,11 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
   var Dialog =
   /*#__PURE__*/
   function () {
+    /**
+     * 汎用ダイアログ機能
+     * @constructor
+     * @param root ダイアログ機能のルート
+     */
     function Dialog(root) {
       _classCallCheck(this, Dialog);
 
@@ -737,17 +742,15 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       this.hook = this.root.querySelector('.js-dialog__hook');
       this.lead = this.root.querySelector('.js-dialog__lead');
       this.closeButton = document.createElement('button');
-      this.buttonSpan = document.createElement('span');
+      this.focusableElement = null;
       this.overlay = null;
-      this.isOpen = false;
-      this.focusableElement = null; // 関数実行
+      this.isOpen = false; // 関数実行
 
       this.createElement();
       this.setA11y();
     }
     /**
      * JS有効時に必要な要素の生成と設置
-     * @returns void
      */
 
 
@@ -756,11 +759,13 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       value: function createElement() {
         var _this = this;
 
+        var buttonSpan = document.createElement('span');
+
         var createCloseButton = function createCloseButton() {
           return new Promise(function (resolve) {
-            _this.buttonSpan.textContent = 'ダイアログを閉じる';
+            buttonSpan.textContent = 'ダイアログを閉じる';
 
-            _this.closeButton.appendChild(_this.buttonSpan);
+            _this.closeButton.appendChild(buttonSpan);
 
             _this.closeButton.setAttribute('type', 'button');
 
@@ -791,7 +796,6 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }
       /**
        * JS有効時に必要なWAI-ARIAの付与
-       * @returns void
        */
 
     }, {
@@ -829,7 +833,6 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }
       /**
        * モーダル非表示のイベントハンドラ
-       * @returns void
        */
 
     }, {
@@ -848,7 +851,6 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }
       /**
        * アニメーション終了後の処理
-       * @returns void
        */
 
     }, {
@@ -872,7 +874,6 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }
       /**
        * クリック関連のイベントをまとめる関数
-       * @returns void
        */
 
     }, {
@@ -880,7 +881,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       value: function clickEvent() {
         var _this4 = this;
 
-        // 初回クリック時に空のoverlayにオブジェクトを代入
+        // 初回クリック時にoverlayオブジェクトを代入
         if (!this.overlay) {
           this.overlay = document.querySelector('.dialog-overlay');
         }
@@ -909,7 +910,6 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }
       /**
        * キーボード入力関連のイベントをまとめる関数
-       * @returns void
        */
 
     }, {

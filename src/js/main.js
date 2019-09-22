@@ -9,16 +9,20 @@ import '../scss/main.scss';
     const FOCUSABLE = 'a, area, input, button, select, option, textarea, output, summary, video, audio, object, embed, iframe';
 
     class Dialog {
+        /**
+         * 汎用ダイアログ機能
+         * @constructor
+         * @param root ダイアログ機能のルート
+         */
         constructor(root) {
             this.root = root;
             this.content = this.root.querySelector('.js-dialog__content');
             this.hook = this.root.querySelector('.js-dialog__hook');
             this.lead = this.root.querySelector('.js-dialog__lead');
             this.closeButton = document.createElement('button');
-            this.buttonSpan = document.createElement('span');
+            this.focusableElement = null;
             this.overlay = null;
             this.isOpen = false;
-            this.focusableElement = null;
 
             // 関数実行
             this.createElement();
@@ -27,13 +31,13 @@ import '../scss/main.scss';
 
         /**
          * JS有効時に必要な要素の生成と設置
-         * @returns void
          */
         createElement() {
+            const buttonSpan = document.createElement('span');
             const createCloseButton = () => {
                 return new Promise(resolve => {
-                    this.buttonSpan.textContent = 'ダイアログを閉じる';
-                    this.closeButton.appendChild(this.buttonSpan);
+                    buttonSpan.textContent = 'ダイアログを閉じる';
+                    this.closeButton.appendChild(buttonSpan);
                     this.closeButton.setAttribute('type', 'button');
                     this.closeButton.classList.add('js-close-btn');
                     this.closeButton.classList.add('dialog__close-btn');
@@ -59,7 +63,6 @@ import '../scss/main.scss';
 
         /**
          * JS有効時に必要なWAI-ARIAの付与
-         * @returns void
          */
         setA11y() {
             this.content.setAttribute('role', 'dialog');
@@ -91,7 +94,6 @@ import '../scss/main.scss';
 
         /**
          * モーダル非表示のイベントハンドラ
-         * @returns void
          */
         closeDialog() {
             DOC.style.overflow = '';
@@ -107,7 +109,6 @@ import '../scss/main.scss';
 
         /**
          * アニメーション終了後の処理
-         * @returns void
          */
         transitionEvent() {
             switch (this.content.classList.contains('is-visible')) {
@@ -127,10 +128,9 @@ import '../scss/main.scss';
 
         /**
          * クリック関連のイベントをまとめる関数
-         * @returns void
          */
         clickEvent() {
-            // 初回クリック時に空のoverlayにオブジェクトを代入
+            // 初回クリック時にoverlayオブジェクトを代入
             if (!this.overlay) {
                 this.overlay = document.querySelector('.dialog-overlay');
             }
@@ -163,7 +163,6 @@ import '../scss/main.scss';
 
         /**
          * キーボード入力関連のイベントをまとめる関数
-         * @returns void
          */
         keyEvent() {
             this.closeButton.addEventListener('keydown', e => {
