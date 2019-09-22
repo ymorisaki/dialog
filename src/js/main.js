@@ -94,6 +94,7 @@ import '../scss/main.scss';
          * @returns void
          */
         closeDialog() {
+            DOC.style.overflow = '';
             this.content.classList.remove('is-visible');
             this.overlay.classList.remove('is-visible');
             this.hook.setAttribute('aria-expanded', false);
@@ -118,7 +119,6 @@ import '../scss/main.scss';
                 this.content.classList.remove('is-block');
                 this.overlay.classList.remove('is-block');
                 this.isOpen = false;
-                DOC.style.overflow = '';
                 break;
             default:
                 break;

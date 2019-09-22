@@ -76,12 +76,13 @@ li {
     &__content {
       position: fixed;
       top: 0;
-      right: 20px;
-      left: 20px;
+      right: 30px;
+      left: 30px;
       bottom: 0;
+      max-width: 1000px;
       height: auto;
       display: none;
-      margin: 20px auto;
+      margin: 100px auto;
       opacity: 0;
       z-index: 1;
       transition: 1s;
@@ -97,7 +98,6 @@ li {
     }
 
     &__inner {
-      position: relative;
       background: #fff;
       padding: 20px;
     }
@@ -106,12 +106,33 @@ li {
       position: absolute;
       top: 0;
       right: 0;
+      width: 50px;
+      height: 50px;
+      background: #000;
+      overflow: hidden;
+      &::after,
+      &::before {
+        position: absolute;
+        top: 50%;
+        right: 0;
+        left: 0;
+        margin: auto;
+        width: 25px;
+        height: 1px;
+        background: #fff;
+        transform-origin: center;
+        content: '';
+      }
+      &::after {
+        transform: rotate(45deg);
+      }
+      &::before {
+        transform: rotate(-45deg);
+      }
       > span {
-        position: absolte;
-        width: 100px;
-        height: 100px;
-        background: #000;
-        border-radius: 50%;
+        position: absolute;
+        top: -50px;
+        right: -50px;
       }
     }
 
