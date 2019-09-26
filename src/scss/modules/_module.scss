@@ -1,1 +1,110 @@
 @charset "UTF-8";
+
+
+.mod-modal-content .mod-modal-inner {
+  background-color: #fff;
+  position: relative;
+  overflow-y: auto;
+  max-width: 800px;
+  margin: 50px auto;
+  padding: 50px 25px;
+}
+
+.mod-modal-content .mod-modal-inner :nth-child(1) {
+  margin-top: 0;
+}
+
+.mod-modal-content .mod-modal-inner .mod-text {
+  margin-top: 30px;
+}
+
+.mod-modal-content .mod-modal-inner .modal-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  overflow: hidden;
+  width: 62px;
+  height: 62px;
+}
+
+.mod-modal-content .mod-modal-inner .modal-button .radius {
+  background-color: #ea5504;
+  position: absolute;
+  top: -60px;
+  right: -60px;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+}
+
+.mod-modal-content .mod-modal-inner .modal-button .radius > span {
+  position: absolute;
+  right: 2000px;
+}
+
+.mod-modal-content .mod-modal-inner .modal-button .radius::before,
+.mod-modal-content .mod-modal-inner .modal-button .radius::after {
+  background-color: #fff;
+  position: absolute;
+  bottom: 35px;
+  left: 22px;
+  width: 27px;
+  height: 2px;
+  content: "";
+  transform-origin: center;
+}
+
+.mod-modal-content .mod-modal-inner .modal-button .radius::before {
+  transform: rotate(45deg);
+}
+
+.mod-modal-content .mod-modal-inner .modal-button .radius::after {
+  transform: rotate(-45deg);
+}
+
+.js-enable .mod-modal-content {
+  display: none;
+}
+
+.js-enable .mod-modal-content.is-visible {
+  position: fixed;
+  z-index: 1002;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: block;
+  overflow-y: auto;
+  margin: auto;
+  padding: 0 20px;
+  transition: .5s;
+  opacity: 0;
+}
+
+.js-enable .mod-modal-content.is-animation {
+  opacity: 1;
+}
+
+.js-enable .mod-modal-content .mod-modal-inner {
+  opacity: 1;
+}
+
+.box-modal-overlay {
+  background-color: rgba(0, 0, 0, .5);
+  position: fixed;
+  z-index: 1001;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: .5s;
+  opacity: 0;
+}
+
+.box-modal-overlay.is-visible {
+  opacity: 1;
+}
+
+.box-modal-overlay.is-hidden {
+  display: none;
+}
